@@ -1,0 +1,694 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Whitepaper</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	text-indent: -1.7em;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-opaquegray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="6ede888e-a866-4138-ab37-32804cd3a144" class="page sans"><header><img class="page-cover-image" src="DCON_Splash_5.png" style="object-position:center 33.51%"/><h1 class="page-title">Whitepaper</h1></header><div class="page-body"><nav id="e497c071-2ff3-4052-9c8d-02c0c0371bf9" class="block-color-gray table_of_contents"><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#199c4d76-1a1a-430d-8142-e544d755f94d">About DesignerCon</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#460b3dad-91a4-48b8-8efd-3322550faeca">What has Vincent been up to?</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#545cb997-ef5c-45da-b125-0e3def20593d">What is Vincents?</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#a7a8916e-4c6d-4e95-8bce-2d087e54484c">The artist - Scott Tolleson</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#e7feaf9f-3f0a-4cc7-898b-ec9c58e5cb31"><strong>Friends of Vincents - Featured Artists</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#3d4ff209-c172-4a57-b7aa-55f8d0155e6f">Introducing the Vincents Blind Box at DesignerCon!</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#b04b8130-8821-4e56-8ec0-17121a415987">Phygital</a></div><div class="table_of_contents-item table_of_contents-indent-2"><a class="table_of_contents-link" href="#683b9a9b-f1dd-43d5-81ce-84053dc93d26">𝐩𝐡𝐲𝐠𝐢𝐭𝐚𝐥</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c322801b-ec98-4164-b589-bb95fc0f4ef9">So what’s in the box?</a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#5dd7ac6a-4fd8-499f-87ca-4be7eecc10d8">3XPERIENCE</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#2999802f-fa2d-4e71-b4ad-04b824f472c9"><strong>Friends of Vincents - Featured Web3 Projects</strong></a></div><div class="table_of_contents-item table_of_contents-indent-0"><a class="table_of_contents-link" href="#1ddf25f0-47bc-4f4c-98b1-6b70fad3f5a3">Resources and information</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#9a01b3d0-cf91-49b4-bfd8-1c04de9b2363">Website</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#5486ecf3-96d3-4f8d-8d84-ad6d8a251b2f">Presale</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#272f3386-332b-42db-b745-cbf0506428d2">Public Sale</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#c0fa1acf-9e49-4e2d-b01f-add98ae5dba4">Twitter</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#dd2774af-e7d2-42a5-ac55-2030db08bcce">Discord</a></div><div class="table_of_contents-item table_of_contents-indent-1"><a class="table_of_contents-link" href="#4b34b40e-ef5d-4de2-981a-0c9f85e1beb7">Instagram</a></div></nav><h1 id="199c4d76-1a1a-430d-8142-e544d755f94d" class="block-color-blue_background">About DesignerCon</h1><p id="79bcbc7b-c22f-4f29-afc1-1d6c6ea7ad0e" class="">Since its inception in 2005, DesignerCon has established itself as the premier collectibles, art, and designer convention. The annual show boasts more than 40,000 attendees, 850 vendors, and continues to grow year over year as it celebrates a wide array of aspects from the world of design. As DesignerCon returns for its first IRL convention at the Anaheim Convention Center this year, we expect over 50,000 attendees and 300 vendors from around the world.
+</p><p id="c3398480-b21f-44c0-8938-1daa773b9771" class="">The driving force behind DesignerCon lies in our community, characterized by its uniqueness and enthusiasm for art, culture, and design. From day one, our community has been loyal, returning year after year to support local and global artists and continues engaging heavily through our social channels. Because we discovered back in the early 2000s how fragmented the artist community was, our number one priority has always been and will continue to be connection — as artists, as collectors, but most importantly, as people.</p><p id="25892ecd-62b6-438b-846c-6da2941565e6" class="">
+</p><p id="d3fb049b-f720-4dbf-ba02-6f9b9e0527fa" class="">As a token of our appreciation, we are giving back to you all, the reason we are here today. We’re taking on the next big step in evolving our brand by re-introducing the mascot you all know and love, Vincents, in a brand new way!</p><p id="b6bf5684-05b9-474b-82e6-6f671cebacae" class="">
+</p><figure id="98061101-3d42-4947-a908-ae695cbfc3ca" class="image"><a href="DCONvectorlogo_Landscape_(1).png"><img style="width:912px" src="DCONvectorlogo_Landscape_(1).png"/></a></figure><p id="f8c7fd24-a76b-4c8d-a12e-4e882ac24c3d" class="">
+</p><h1 id="460b3dad-91a4-48b8-8efd-3322550faeca" class="block-color-orange_background">What has Vincent been up to?</h1><p id="a8f10d9d-f459-41bc-af76-c10c96cf35a1" class="">For the past year, our beloved toy builder has been on a mission to bring new innovative experiences to this year’s DesignerCon. Having discovered the potential of blockchain technology, Vincent has been working tirelessly on something special to share with all his friends. That’s when he had the idea, of <em><strong>Vincents</strong></em><em>.</em></p><p id="b0a767bb-e147-4b57-94b3-b6d540e12284" class="">Follow Vincent’s journey to bring his visions to life through our ongoing comic series created by special friend of Vincent, Luke McGarry.</p><div id="37ff9306-9018-4811-97bf-4472fc7e6783" class="column-list"><div id="83f2c73e-c84c-48eb-ab6c-5c1ea2e83200" style="width:33.33333333333334%" class="column"><figure id="0d32ebd9-790e-4faa-9255-20daef62ddd1" class="image"><a href="Untitled.png"><img style="width:432px" src="Untitled.png"/></a></figure><hr id="7abedc6f-fcbf-42f6-839d-7aa91453739c"/><figure id="d3418129-dedd-4e78-91bf-092afdad4f92" class="image"><a href="vincent4.jpg"><img style="width:1250px" src="vincent4.jpg"/></a></figure></div><div id="49fb1bdf-e630-41f2-8fce-e1eabad346cc" style="width:33.333333333333336%" class="column"><figure id="96386ac7-76be-4fa8-9aba-6973150cc746" class="image"><a href="Vincent_comic2_(2).jpg"><img style="width:1250px" src="Vincent_comic2_(2).jpg"/></a></figure><hr id="483c0e0a-fca5-48b9-ab52-cb5c2447054a"/><figure id="74b6834d-02c6-4f5c-8790-90cfdd0d4221" class="image"><a href="vincent5.jpg"><img style="width:1250px" src="vincent5.jpg"/></a></figure></div><div id="a0c487bc-4746-4fe2-9cc7-f696098b7e66" style="width:33.33333333333333%" class="column"><figure id="be3b16d2-2553-4f20-8d48-dd0ced78ec00" class="image"><a href="image4_(1).jpeg"><img style="width:3000px" src="image4_(1).jpeg"/></a></figure><hr id="dd411e1f-599a-42cb-a29f-b141d939805e"/><figure id="9faa472e-b210-4c36-ad63-ae48e7e2f3f1" class="image"><a href="vincent6.jpg"><img style="width:1250px" src="vincent6.jpg"/></a></figure></div></div><h1 id="545cb997-ef5c-45da-b125-0e3def20593d" class="block-color-red_background">What is Vincents?</h1><figure id="869908e7-6fbc-4041-af6c-9b65529793fb"><div class="source"><a href="Vinnie_Gif_Animation.mov">https://s3-us-west-2.amazonaws.com/secure.notion-static.com/14272b1e-d4c1-4369-9aa3-ee05cd0758f4/Vinnie_Gif_Animation.mov</a></div></figure><p id="239ddf9e-ab4d-4b4f-8b75-ab0646acc61c" class="">
+</p><p id="73bb039b-8fcd-490f-837c-cc1477b4b827" class=""><em><strong>Vincents</strong></em> is a new DesignerCon exclusive membership collectible powered by innovative blockchain technology that will allow us to curate online and IRL experiences for our community like never before. Just like a collectible, Vincents will be extremely limited in supply. And in addition to owning the very first DesignerCon exclusive Vincent digital collectible, holders will be given exclusive perks and rewards for simply being a part of our ecosystem. The chance to forge physical collectibles, access to exclusive events, early-access to all things DesignerCon, and more  — the possibilities are endless. </p><p id="db728e04-5b4d-4b1b-984d-c5ac38ef5002" class="">
+</p><p id="cec2b806-4c01-44c8-bd07-27ad2cd40cd1" class=""><strong>Inspiration Behind Vincent</strong>
+As a young kid Vinny liked to collect as a hobby. When Vinny grew up to become Vincent, that hobby became a passion that he wanted to share with the world. In a way, Vincent represents all collectors and artists in the world. Nobody can accurately explain where this obsession to create or collect comes from, but those who try can all relate to Vincent.</p><p id="992973f3-9de3-4776-8e1f-edccc713f0e9" class="">
+</p><p id="ab021874-89b4-48de-aafb-84afefc15cad" class=""><strong>Why Web3</strong>
+DesignerCon has never been one to shy away from innovation as we believe this is how we can move forward as a community.
+Over the last year and half, we’ve been paying close attention to the development of web3 technology and, specifically, NFT’s. As one of the pioneers of collectible culture, we believe NFT’s will be an integral part of collecting both digital and physical assets.
+NFT’s allow us to simultaneously:</p><ul id="7f979f38-d291-46d1-8fea-7caa117cafec" class="bulleted-list"><li style="list-style-type:disc">Create a closer connection between us and our community</li></ul><ul id="1ea7822b-3528-40b9-86cb-2487314ffe06" class="bulleted-list"><li style="list-style-type:disc">Support emerging artists and brands in ways that weren’t possible before</li></ul><ul id="4e2f7942-e0c4-4be2-9308-1ecf8a4086cf" class="bulleted-list"><li style="list-style-type:disc">Finding new ways to change the relationship between brands and consumers</li></ul><ul id="2d95aa2f-b0a1-4938-b85a-ded10d64ca22" class="bulleted-list"><li style="list-style-type:disc">Authenticate and verify ownership of certain collectibles</li></ul><ul id="9ec1d9b8-f023-46b6-bd92-ebf4ab31281d" class="bulleted-list"><li style="list-style-type:disc">and much, much more!</li></ul><hr id="8e6fbc09-0785-4c2d-80dc-db6bc31c40f4"/><h2 id="a7a8916e-4c6d-4e95-8bce-2d087e54484c" class="">The artist - Scott Tolleson</h2><p id="3c6a89e9-0027-4b2f-8851-4cb8f13dab25" class="">The design of <em><strong>Vincents </strong></em>came from the mind of DesignerCon’s very own,<strong> </strong><strong><a href="https://stolleart.com/">Scott Tolleson</a></strong>. Scott got his start in the world of art as an Art Director for Walt Disney Company’s Disneyland, which can be seen in his art style, and has since gone on to build a very impressive resume. Since its inception, Scott has been the mastermind behind DesignerCon’s creative direction and has collaborated with notable companies such as Topps, Kidrobot, Disney, Skybound, Nickelodeon, Superplastic, and many others. He’s also seen a lot of success in his recent toy releases including The Imperial Lotus Dragon, Shards, WNDGO, and Bao. We’re thankful to have had the opportunity to work with Scott over the years and are excited to see what the future has in store for our upcoming collaboration, <em><strong>Vincents</strong></em>.</p><div id="c3c1fd77-65f5-4645-9adb-82808e32a89c" class="column-list"><div id="6e239890-216e-4c98-b73b-dc397e645494" style="width:33.333333333333336%" class="column"><figure id="4b281e28-c8e3-4357-8c91-3cf1c0bff962" class="image"><a href="Untitled%201.png"><img style="width:547px" src="Untitled%201.png"/></a></figure></div><div id="b69aece9-c121-4d57-ad82-8bfb1cc11e95" style="width:33.333333333333336%" class="column"><figure id="3aeb942f-247f-449f-a261-5be158d5f85d" class="image"><a href="Untitled%202.png"><img style="width:1024px" src="Untitled%202.png"/></a></figure></div><div id="d747a456-c52f-472f-9cfe-c5470e528a25" style="width:33.33333333333333%" class="column"><figure id="44acc5dd-15c4-46e0-9791-0f7edfbcac62" class="image"><a href="Untitled%203.png"><img style="width:1024px" src="Untitled%203.png"/></a></figure></div></div><hr id="bf2e1d34-ae2e-4e2e-98cd-f83b77ce8c83"/><h2 id="e7feaf9f-3f0a-4cc7-898b-ec9c58e5cb31" class=""><strong>Friends of Vincents - Featured Artists</strong></h2><p id="d0c7a9ea-700c-4dc3-8b0f-ebc121f04712" class="">DesignerCon wouldn’t be what it is today without all the friends that have joined us on our journey along the way.</p><div id="a10dc929-4ccf-4646-86d6-db0ea8fd4d2e" class="column-list"><div id="631226cb-d429-4fe1-b99b-5975d6cc261e" style="width:25%" class="column"><figure id="80746eeb-36e9-4364-aa65-c4512697a879" class="image"><a href="Sket-Artist_(2).png"><img style="width:1024px" src="Sket-Artist_(2).png"/></a></figure><figure id="5f164021-1edb-466c-acd3-16e2bb58edfd" class="image"><a href="Stapleverse-v1-01.png"><img style="width:1025px" src="Stapleverse-v1-01.png"/></a></figure></div><div id="22d7d098-dcc4-4ba3-b84d-1edb90c715ef" style="width:25%" class="column"><figure id="bcee7d1c-9a56-4936-bc13-1a84596c2919" class="image"><a href="image1.jpeg"><img style="width:3000px" src="image1.jpeg"/></a></figure><figure id="dc3e0b75-c5eb-4374-a002-2d4d6e5a5fa9" class="image"><a href="Untitled%204.png"><img style="width:1600px" src="Untitled%204.png"/></a></figure></div><div id="3c2bc805-f236-4bf6-bc2b-a66c57b333ad" style="width:25%" class="column"><figure id="57cb27c5-7277-4f9e-9e67-f8f2d28a2c48" class="image"><a href="kozik-v1_(1).png"><img style="width:1024px" src="kozik-v1_(1).png"/></a></figure><figure id="21414953-e152-408a-b9cd-adf005d820e9" class="image"><a href="Friends_Of_x_Goonz_1_1_(1).jpg"><img style="width:1026px" src="Friends_Of_x_Goonz_1_1_(1).jpg"/></a></figure><p id="1aec0ed3-30b7-4cf0-a982-b9efcd82c6b1" class="">
+</p></div><div id="3c25706e-5135-492a-89db-5d8d6729a3d7" style="width:25%" class="column"><figure id="87900f61-6b06-4080-a0bd-257e324257a4" class="image"><a href="ROJI-v1_(1).png"><img style="width:1024px" src="ROJI-v1_(1).png"/></a></figure><figure id="e9ed58bf-13d3-47ce-a674-dce4bdf4e280" class="image"><a href="Dented_Vincent_(1).png"><img style="width:288px" src="Dented_Vincent_(1).png"/></a></figure><p id="28e5c707-5bc5-44be-bc53-595ddeba823a" class="">
+</p></div></div><p id="a71d38fd-4d10-447f-938c-744a9275addf" class=""><em>Special thanks to these friends for contributing their 1-of-1 Vincents to the collection:</em></p><div id="8edbcdf8-c96a-4e62-b6ec-dcc4035da1b9" class="column-list"><div id="e3931625-1b8a-49ba-8089-dd89ac07f8e4" style="width:25%" class="column"><p id="93d331d0-b0f7-4f7a-ac3b-140c599e9eca" class=""><strong>Ancient Urban Kids</strong></p><p id="8cc8b842-bea5-42b1-a648-8095c9d1dce4" class=""><strong>Brandon Johnson</strong></p><p id="80a81671-d549-4154-9b3d-16f78725cb7c" class=""><strong>Cryptoon Goonz</strong></p><p id="f45c4a18-720a-4be5-a96b-c2af7d42727c" class=""><strong>Dented Feels</strong></p><p id="0f8f96d4-6dca-49bd-b43f-297c0428a07d" class=""><strong>DigitalNoir</strong></p></div><div id="e7983b56-9cd6-4ae7-8d01-30bcaf10861d" style="width:25%" class="column"><p id="e3e58fbc-eaaf-4785-a387-e019f61b225e" class=""><strong>Doktor A</strong></p><p id="1d3fb7e8-b1e4-4860-8be8-f06a30bccd87" class=""><strong>Dream Society</strong></p><p id="f9d6b61b-2b7e-44bc-a88a-f932858a7059" class=""><strong>Frank Kozik</strong></p><p id="4d435663-8f41-401f-9249-d2c8a7eae0b7" class=""><strong>Greg Mike - FLWRS</strong></p><p id="e504dd55-dc0f-4148-9d4c-6675280b0984" class=""><strong>HypeBao</strong></p></div><div id="03331daa-259b-49ec-a162-2e03d3a6818b" style="width:25%" class="column"><p id="24e2255a-7449-4cb4-9a42-fa038d67deb9" class=""><strong>Hyperactive Monkey</strong></p><p id="44d36d1b-07f2-4eee-b215-059338737071" class=""><strong>Joe Ledbetter</strong></p><p id="600d854b-f5bf-4417-adc8-2b3fffc39950" class=""><strong>kaNO</strong></p><p id="958279f2-088d-4d74-a1ba-fad91022e3e7" class=""><strong>Karafuru</strong></p><p id="0eb6e007-6f8a-463d-b098-a1117c202f25" class=""><strong>Luke McGarry</strong></p></div><div id="ace35cc2-8635-4e96-a700-67bc0b7240e7" style="width:25%" class="column"><p id="afed2ff5-d523-42e1-86f2-f4458c38eef4" class=""><strong>MAO</strong></p><p id="faf05368-79c3-46c3-bc84-b0badf6786f7" class=""><strong>Mindblowon</strong></p><p id="e96c88aa-484b-478d-83e2-bc19105aa70d" class=""><strong>ROJI</strong></p><p id="41331841-0e6a-40cd-ab2a-15dabb497f7d" class=""><strong>SketONE</strong></p><p id="bb84d6cd-54c6-4607-bce2-9da2341155c8" class=""><strong>Stapleverse</strong></p><p id="ac92629c-609c-4a6e-8b13-ae813f1934bb" class=""><strong>TOUMART</strong></p></div></div><p id="01547cef-7c90-4bf9-9b84-10096c7be81f" class="">
+</p><h1 id="3d4ff209-c172-4a57-b7aa-55f8d0155e6f" class="block-color-teal_background">Introducing the Vincents Blind Box at DesignerCon!</h1><div id="f36879fe-4dcc-4bc8-a823-553c867957cb" class="column-list"><div id="048859b0-f341-453c-b161-2f6f417212fa" style="width:50%" class="column"><figure id="33dac358-7680-4ab8-a21f-3b14c39574f9" class="image"><a href="Untitled%205.png"><img style="width:480px" src="Untitled%205.png"/></a></figure></div><div id="b80abf48-1f1b-4bcb-b64c-e913593d9469" style="width:50%" class="column"><figure id="40229d3e-99a2-4b7a-a86e-290745e29168" class="image"><a href="Untitled%206.png"><img style="width:528px" src="Untitled%206.png"/></a></figure></div></div><p id="7724229f-11c9-483c-94e5-3cb6d081dbbd" class="">
+</p><p id="76c600d7-5546-4939-a416-37a3b31dcb39" class="">The first DesignerCon <strong>phygital </strong>collectible will be within our new Vincents Blind Box! The Blind Box will be our mechanism for rewarding participants of our new Vincents ecosystem. On <strong>November 18th</strong>, the public will be able to purchase a Blind Box both online as well as live at DesignerCon ‘22. Additionally, buyers will have exclusive access to all future Blind Boxes until DesignerCon ‘23, meaning only those who hold a Vincent from the first Blind Box will have access to the rest of this season’s Blind Boxes.</p><h2 id="b04b8130-8821-4e56-8ec0-17121a415987" class="">Phygital</h2><p id="c754f638-6f42-4d3a-a775-f5af1738aa72" class="">Vincents is working alongside prominent artists in the designer and toy community. Our objective is to explore creative expression and art in both traditional and digital mediums to create<strong> phygital </strong>collectibles.</p><hr id="c9ed651d-31d7-4075-8d6a-fc712f829d18"/><h3 id="683b9a9b-f1dd-43d5-81ce-84053dc93d26" class="">𝐩𝐡𝐲𝐠𝐢𝐭𝐚𝐥</h3><p id="723f50be-db28-4956-9063-fcc337d4ae9f" class="">/ˈfi-ji-təl/
+𝑎𝑑𝑗𝑒𝑐𝑡𝑖𝑣𝑒
+:the concept of using technology to bridge the digital and physical worlds with the purpose of providing a unique interactive experiences for the user</p><hr id="3314a6fd-6f74-419a-aeae-f22d67d5f554"/><h2 id="c322801b-ec98-4164-b589-bb95fc0f4ef9" class="">So what’s in the box?</h2><figure id="426aa293-795d-4f70-8388-24e9e7867fc7" class="image"><a href="https://i.makeagif.com/media/7-16-2022/dORQv6.gif"><img style="width:768px" src="https://i.makeagif.com/media/7-16-2022/dORQv6.gif"/></a></figure><figure id="dbaa6541-4f41-4f68-b4ae-944ca4f80e60" class="image"><a href="Untitled%207.png"><img style="width:528px" src="Untitled%207.png"/></a></figure><p id="deeec1df-6f0e-4b89-bd07-1dc6cc5d722a" class="">We are partnering up with DesignerCon exclusive artists and brands to bring new excitement throughout the year leading up to DesignerCon ‘23. Holders of Vincents will be able to claim blindboxes that hold exclusive content such as…</p><ul id="05b8a91d-025c-46c2-a8bc-abf063b6fcc1" class="bulleted-list"><li style="list-style-type:disc"><strong>FREE weekend pass to DesignerCon ‘23</strong></li></ul><ul id="71bb9a76-b4d6-4bd5-822a-81e9f3cea098" class="bulleted-list"><li style="list-style-type:disc"><strong>Exclusive digital collectibles</strong></li></ul><ul id="147c0196-f2b6-448b-ade2-23379cf668f1" class="bulleted-list"><li style="list-style-type:disc"><strong>Physical collectible forging</strong></li></ul><ul id="90c8a2ac-01b6-44e2-887d-05101580fee0" class="bulleted-list"><li style="list-style-type:disc"><strong>Unique blindboxes from your favorite artists</strong></li></ul><ul id="49b0cd6f-43c9-4427-b382-7ed2855d9808" class="bulleted-list"><li style="list-style-type:disc"><strong>Free merch at the Vincents booth</strong></li></ul><ul id="8584d704-ba53-431f-a00c-e5268a3dc890" class="bulleted-list"><li style="list-style-type:disc"><strong>Partnership items</strong></li></ul><ul id="4285ea6a-8323-4931-b938-459be1ec2c82" class="bulleted-list"><li style="list-style-type:disc"><strong>Special access to events</strong></li></ul><ul id="87e3ed14-494f-4698-b019-9dbc2372d1fc" class="bulleted-list"><li style="list-style-type:disc"><strong>And more!</strong></li></ul><p id="cb6d8448-b6c0-413d-a6f7-374bd0eb1663" class="">
+</p><h1 id="5dd7ac6a-4fd8-499f-87ca-4be7eecc10d8" class="block-color-purple_background">3XPERIENCE</h1><figure id="568bb09c-82a4-4cea-accf-cb8de2049434" class="image"><a href="IMG_5693.png"><img style="width:1104px" src="IMG_5693.png"/></a></figure><p id="da40cb22-7c20-4897-b051-1673d69fcee5" class="">
+</p><p id="2319145f-f3d8-4a5d-b20a-4091219dc2e4" class="">As we’ve seen the growing use of WEB3 technology by and for artists, we at DesignerCon are very excited to present 3XP, a curated space dedicated to education and opportunity for those interested in WEB3. The 3XPERIENCE will feature prolific digital creatives under the collective known as <strong>Friends of Vincents </strong>including partners like Karafuru, Krause House Dao, Adam Bomb Squad, Lyrical Lemonade, and more for an interactive experience that brings together curious WEB2 users and innovate WEB3 enthusiasts. </p><p id="95237836-6e42-4481-a115-fe9efaf8fc03" class="">Furthermore, we’ve also partnered with numerous WEB3 native <strong><strong><strong>Friends of Vincents</strong></strong></strong> to share the joy of DesignerCon to all their att</p><p id="a2135ccb-0041-4bfe-abe6-c6e1b74d23e0" class="">As we all continue to navigate through our journey to innovate digital creating, collecting, and curating using blockchain technology, we depend on our Friends to build a community aimed to promote collaboration, engagement, and education around all things WEB3.</p><p id="39d5c487-8843-4d37-a04b-6a03e6839069" class="">
+</p><h2 id="2999802f-fa2d-4e71-b4ad-04b824f472c9" class=""><strong>Friends of Vincents - Featured Web3 Projects</strong></h2><div id="4ac5a085-715e-4566-8b08-3c3c5f7b1eb0" class="column-list"><div id="be20c31f-bd37-4121-a318-60e9bfc224e1" style="width:33.333333333333336%" class="column"><figure id="87584104-5581-4c9d-a5eb-68d40db12c43" class="image"><a href="Untitled%208.png"><img style="width:528px" src="Untitled%208.png"/></a></figure></div><div id="dade0f4d-0b6a-4712-8af9-82587dede994" style="width:33.33333333333333%" class="column"><figure id="dc4dfd5a-d4ad-4ea4-9bb7-b04f05b1d0ff" class="image"><a href="Untitled%209.png"><img style="width:1000px" src="Untitled%209.png"/></a></figure></div><div id="a825535d-1504-4308-add0-8c6a120c3110" style="width:33.33333333333334%" class="column"><figure id="64db0a83-8682-4d0d-9798-a520eb51ad04" class="image"><a href="Untitled%2010.png"><img style="width:1000px" src="Untitled%2010.png"/></a></figure></div></div><div id="6680eb9d-6bfe-4052-88c5-64f3a228a501" class="column-list"><div id="c60410ca-944b-45fa-8600-7ba21c74d90e" style="width:50%" class="column"><figure id="f536a33a-6039-4719-9eaa-7f0654ab17a4" class="image"><a href="Untitled%2011.png"><img style="width:720px" src="Untitled%2011.png"/></a></figure></div><div id="e3dfe739-8568-4501-996d-093425736bc1" style="width:50.00000000000006%" class="column"><figure id="548246b3-99d8-4949-906b-28a80e0f77a6" class="image"><a href="Untitled%2012.png"><img style="width:528px" src="Untitled%2012.png"/></a></figure></div></div><hr id="80c2496f-058e-4929-941d-91ddb0a39a41"/><h1 id="1ddf25f0-47bc-4f4c-98b1-6b70fad3f5a3" class="block-color-brown_background">Resources and information</h1><p id="3af1da2a-a0e7-4082-a3a7-a27f93dc6cae" class="">Here are some resources for anyone looking to learn more about Vincents and DesignerCon</p><h3 id="9a01b3d0-cf91-49b4-bfd8-1c04de9b2363" class="">Website</h3><figure id="d38c51e7-c6f1-4501-999c-652a68025911"><a href="https://www.vincents.app/" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">VINCENTS by DesignerCon</div><div class="bookmark-description">Vincents is the official digital collectible collection born out of DesignerCon.It provides holders exclusive curated online and IRL experiences.</div></div><div class="bookmark-href"><img src="https://www.vincents.app/vincent-500x500.png" class="icon bookmark-icon"/>https://www.vincents.app/</div></div></a></figure><p id="fedebbb0-b939-488a-8368-fc251bfc0ea1" class="">
+</p><h3 id="5486ecf3-96d3-4f8d-8d84-ad6d8a251b2f" class="">Presale</h3><figure id="076d6800-6272-495b-b2aa-5c63e4cd0387"><a href="https://www.vincents.app/presale" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Presale | VINCENTS by DesignerCon</div><div class="bookmark-description">Vincents is the official digital collectible collection born out of DesignerCon. It provides holders exclusive curated online and IRL experiences.</div></div><div class="bookmark-href"><img src="https://www.vincents.app/vincent-500x500.png" class="icon bookmark-icon"/>https://www.vincents.app/presale</div></div></a></figure><p id="41c888b4-3fec-4fa1-9474-e1daa2dc7641" class="">
+</p><h3 id="272f3386-332b-42db-b745-cbf0506428d2" class="">Public Sale</h3><figure id="efe032a6-f1b2-4c0b-a881-d7bc5e4a6fde"><a href="https://vincents.app/mint" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Buy a Vincent | VINCENTS by DesignerCon</div><div class="bookmark-description">Vincents is the official digital collectible collection born out of DesignerCon. It provides holders exclusive curated online and IRL experiences.</div></div><div class="bookmark-href"><img src="https://www.vincents.app/vincent-500x500.png" class="icon bookmark-icon"/>https://vincents.app/mint</div></div></a></figure><p id="09fab7e4-d9f0-4ab2-95bf-fc28186e650a" class="">
+</p><h3 id="c0fa1acf-9e49-4e2d-b01f-add98ae5dba4" class="">Twitter</h3><figure id="cd5acd39-4717-413e-8312-291a388c1340"><a href="https://twitter.com/DesignerCon" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">JavaScript is not available.</div></div><div class="bookmark-href"><img src="https://abs.twimg.com/favicons/twitter.2.ico" class="icon bookmark-icon"/>https://twitter.com/DesignerCon</div></div><img src="https://abs.twimg.com/errors/logo46x38.png" class="bookmark-image"/></a></figure><p id="877d2146-4a0f-4527-b91f-f4b74986a128" class="">
+</p><h3 id="dd2774af-e7d2-42a5-ac55-2030db08bcce" class="">Discord</h3><figure id="2eaac7c6-496a-445e-822c-8a12e4f57d51"><a href="https://discord.gg/designercon" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title">Join the DesignerCon Discord Server!</div><div class="bookmark-description">Check out the DesignerCon community on Discord - hang out with 5,191 other members and enjoy free voice and text chat.</div></div><div class="bookmark-href"><img src="https://discord.com/assets/ec2c34cadd4b5f4594415127380a85e6.ico" class="icon bookmark-icon"/>https://discord.gg/designercon</div></div><img src="https://cdn.discordapp.com/splashes/994433636269031516/32e1d2a4350c1543e3ec2fd224a53dcf.jpg?size=512" class="bookmark-image"/></a></figure><ol type="1" id="270139c0-2725-4c53-9cae-22d472bec579" class="numbered-list" start="1"><li>First-access to information regarding both DCON ‘22 and Vincents</li></ol><ol type="1" id="970515e7-a26c-4900-8b84-ea8aee858dfe" class="numbered-list" start="2"><li>Exclusive giveaways (toys, tickets, merchandise, digital collectibles)</li></ol><ol type="1" id="a49d3b49-9768-452f-b4b7-213147f915d8" class="numbered-list" start="3"><li>Marketplace to buy, sell, trade toys</li></ol><ol type="1" id="6ef3d387-c187-443f-a2c2-c8ef69d4c015" class="numbered-list" start="4"><li>Weekly community art events hosted by our Community Lead, Rick Kitagawa</li></ol><p id="64bb94bc-f6c9-4bea-8693-8e79d6956f9d" class="">
+</p><h3 id="4b34b40e-ef5d-4de2-981a-0c9f85e1beb7" class="">Instagram</h3><figure id="31ef1bcd-40a5-4b9a-8fd8-d1ea0339f8ac"><a href="https://www.instagram.com/designercon" class="bookmark source"><div class="bookmark-info"><div class="bookmark-text"><div class="bookmark-title"></div></div><div class="bookmark-href">https://www.instagram.com/designercon</div></div></a></figure><ol type="1" id="5d687b0d-2649-4196-a2f7-9aa2df099386" class="numbered-list" start="1"><li>Livestream about DesignerCon</li></ol><ol type="1" id="c4f0b08b-f5a5-4c69-bea0-51c5ea37b42a" class="numbered-list" start="2"><li>Stories from our vendors and artists</li></ol><ol type="1" id="4b7413e7-a69a-4aca-9810-1379eb060384" class="numbered-list" start="3"><li>Posts for DesignerCon ‘22 and our partners</li></ol></div></article></body></html>
